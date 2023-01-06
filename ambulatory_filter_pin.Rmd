@@ -1,0 +1,28 @@
+---
+title: "pin_write"
+output: html_document
+date: "2023-01-06"
+---
+
+
+```{r cars}
+library(DBI)
+library(odbc)
+library(pins)
+library(dbplyr)
+library(tidyverse)
+
+poolcon <- dbConnect(odbc(), "Oracle 21_8",
+                     uid = "villea04",
+                     pwd = "qKQvPoSilm21T*qVr")
+
+filters <- tbl(poolcon, "AMBULATORY_FILTERS")
+filters <- filters %>% collect()
+
+board <- board_folder("/data/pin")
+
+board %>% pin_write(filters, "ambulatory_filters")
+
+
+```
+
