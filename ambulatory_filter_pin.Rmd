@@ -12,9 +12,7 @@ library(pins)
 library(dbplyr)
 library(tidyverse)
 
-poolcon <- dbConnect(odbc(), "Oracle 21_8",
-                     uid = "villea04",
-                     pwd = "qKQvPoSilm21T*qVr")
+poolcon <- dbConnect(odbc(), "OAO Cloud DB Production")
 
 filters <- tbl(poolcon, "AMBULATORY_FILTERS")
 filters <- filters %>% collect()
